@@ -20,7 +20,7 @@ def format_input(input)
   input.gsub(/\$|,|%/, '')
 end
 
-def input_loop(msg)
+def collect_info(msg)
   input = ''
   loop do
     prompt(msg)
@@ -38,9 +38,9 @@ prompt('Welcome to the Loan Calculator')
 continue = true
 
 while continue
-  amount = input_loop('Please enter the loan amount')
-  apr = input_loop('Please enter the annual percentage rate (APR)')
-  years = input_loop('Please enter loan duration in years')
+  amount = collect_info('Please enter the loan amount')
+  apr = collect_info('Please enter the annual percentage rate (APR)')
+  years = collect_info('Please enter loan duration in years')
 
   result = calculate(amount, apr, years)
 
