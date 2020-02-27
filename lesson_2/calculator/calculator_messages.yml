@@ -1,0 +1,18 @@
+en:
+  welcome: 'Welcome to Calculator! What is your name?'
+  greeting: 'Hi, %{name}'
+  first_number: 'What is your first number?'
+  second_number: 'What is your second number?'
+  invalid_number: "Hmm...That doesn't look like a number"
+  invalid_name: 'Make sure you use a valid name'
+  invalid_operator: 'Must input 1, 2, 3 or 4'
+  operating_msg: '%{operation} the numbers'
+  result: 'The result is %{result}'
+  another: 'Do you want to perform another calculation? (Y to continue)'
+  thanks: 'Thanks for using Calculator!'
+  operator_msg: >
+    What operations would you like to perform?
+    1) Addition
+    2) Subtraction
+    3) Multiplication
+    4) Division
