@@ -1,10 +1,11 @@
 VALID_CHOICES = %w(rock paper scissors)
-PAPER_ROCK = 'Paper covers rock'
-ROCK_SCISSORS = 'Rock breaks scissors'
-SCISSORS_PAPER = 'Scissors cut paper'
 
 def prompt(msg)
   puts "=> #{msg}"
+end
+
+def line_break
+  puts "\n"
 end
 
 def valid_choices_string
@@ -12,22 +13,24 @@ def valid_choices_string
 end
 
 def wins?(is_winner, is_loser)
-  (is_winner == 'rock' && is_loser == 'scissors') ||
-    (is_winner == 'paper' && is_loser == 'rock') ||
-    (is_winner == 'scissors' && is_loser == 'paper')
+  winning_combos = {
+    rock: 'scissors',
+    paper: 'rock',
+    scissors: 'paper'
+  }
+  winning_combos[is_winner.to_sym] == is_loser
 end
 
 def results(player, computer)
-  results_msg_hash = {
-    rock: { paper: PAPER_ROCK, scissors: ROCK_SCISSORS },
-    paper: { rock: PAPER_ROCK, scissors: SCISSORS_PAPER },
-    scissors: { rock: ROCK_SCISSORS, paper: SCISSORS_PAPER }
+  winning_msgs = {
+    rock: 'rock breaks scissors',
+    paper: 'paper covers rock',
+    scissors: 'scissors cut paper'
   }
-  results_msg = results_msg_hash.dig(player.to_sym, computer.to_sym)
   if wins?(player, computer)
-    "#{results_msg}, you win :)"
+    "You win, #{winning_msgs[player.to_sym]} :)"
   elsif wins?(computer, player)
-    "#{results_msg}, you lose :("
+    "You lose, #{winning_msgs[computer.to_sym]} :("
   else
     "It's a tie :\\"
   end
@@ -35,24 +38,31 @@ end
 
 loop do
   player_choice = ''
+  prompt("Choose one: #{valid_choices_string}")
   loop do
-    prompt("Choose one: #{valid_choices_string}")
-    player_choice = gets.chomp
-    if VALID_CHOICES.include?(player_choice.downcase)
+    player_choice = gets.chomp.downcase
+    if VALID_CHOICES.include?(player_choice)
       break
     else
-      prompt("Must choose: #{valid_choices_string}")
+      prompt("You can only choose: #{valid_choices_string}")
     end
   end
 
   computer_choice = VALID_CHOICES.sample
 
+  line_break
   prompt("You chose: #{player_choice}. The computer chose: #{computer_choice}")
 
   results = results(player_choice, computer_choice)
   prompt(results)
+  line_break
 
   prompt('Do you want to play again? (Y to continue)')
+
   play_again = gets.chomp.downcase.start_with?('y')
-  break unless play_again
+  if play_again
+    system 'clear'
+  else
+    break
+  end
 end
