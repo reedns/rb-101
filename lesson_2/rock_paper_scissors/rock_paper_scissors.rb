@@ -77,12 +77,11 @@ def increment_score(winner)
 end
 
 def grand_winner_msg(player, computer)
-  msg = if player[:score] > computer[:score]
+  if player[:score] > computer[:score]
     display_msg('player_winner')
   else
     display_msg('computer_winner')
   end
-  msg
 end
 
 display_msg('welcome')
@@ -97,7 +96,6 @@ loop do
   line_break
   display_msg('choose', { valid_choices: valid_choices_string })
 
-  player_choice = ''
   loop do
     player[:choice] = convert_choice(gets.chomp.downcase)
     if valid_choice?(player[:choice])
@@ -111,7 +109,8 @@ loop do
   system 'clear'
   display_msg(
     'choices',
-    { player_choice: player[:choice], computer_choice: computer[:choice] }
+    player_choice: player[:choice],
+    computer_choice: computer[:choice]
   )
   line_break
 
@@ -122,7 +121,11 @@ loop do
   line_break
 
   if player[:score] == 5 || computer[:score] == 5
-    display_msg('final_score', player: player[:score], computer: computer[:score])
+    display_msg(
+      'final_score',
+      player: player[:score],
+      computer: computer[:score]
+    )
     grand_winner = grand_winner_msg(player, computer)
     prompt(grand_winner)
     display_msg('play_again')
