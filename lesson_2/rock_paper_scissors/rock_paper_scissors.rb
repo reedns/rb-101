@@ -128,6 +128,12 @@ loop do
     line_break
     display_msg('play_again')
     play_again = gets.chomp.downcase.start_with?('y')
-    play_again ? system('clear') : break
+    if play_again
+      player[:score] = 0
+      computer[:score] = 0
+      system 'clear'
+    else
+      break
+    end
   end
 end
