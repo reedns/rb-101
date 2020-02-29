@@ -90,7 +90,6 @@ line_break
 
 player = { type: 'player', score: 0, choice: nil }
 computer = { type: 'computer', score: 0, choice: nil }
-
 loop do
   display_msg('score', { player: player[:score], computer: computer[:score] })
   line_break
@@ -117,7 +116,6 @@ loop do
   winner = determine_winner(player, computer)
   increment_score(winner)
   results_msg(winner, player[:choice], computer[:choice])
-
   line_break
 
   if player[:score] == 5 || computer[:score] == 5
