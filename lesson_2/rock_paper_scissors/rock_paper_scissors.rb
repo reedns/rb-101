@@ -126,8 +126,8 @@ loop do
       player: player[:score],
       computer: computer[:score]
     )
-    grand_winner = grand_winner_msg(player, computer)
-    prompt(grand_winner)
+    grand_winner_msg(player, computer)
+    line_break
     display_msg('play_again')
     play_again = gets.chomp.downcase.start_with?('y')
     play_again ? system('clear') : break
