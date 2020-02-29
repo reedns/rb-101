@@ -1,0 +1,28 @@
+welcome: 'Welcome to Rock, Paper, Scissors, Lizard, Spock!'
+objective: 'The first to five wins is the winner'
+choose: 'Choose one: %{valid_choices}'
+invalid_choice: 'You can only choose: %{valid_choices}'
+choices: 'You chose: %{player_choice}. The computer chose: %{computer_choice}'
+win: 'You win :)'
+lose: 'You lose :('
+tie: "It's a tie :\\"
+play_again: 'Do you want to play again? (Y to continue)'
+score: 'The score is player: %{player} computer: %{computer}.'
+final_score: 'The final score is player: %{player} computer: %{computer}'
+player_winner: 'Congratulations you are the Grand Winner!!!'
+computer_winner: 'Sorry, the computer is the Grand Winner. Better luck next time!'
+rock:
+  scissors: 'Rock breaks scissors'
+  lizard: 'Rock crushes lizard'
+paper:
+  rock: 'Paper covers rock'
+  spock: 'Paper disproves spock'
+scissors:
+  paper: 'Scissors cut paper'
+  lizard: 'Scissors decapitates lizard'
+lizard:
+  paper: 'Lizard eats paper'
+  spock: 'Lizard poisons spock'
+spock:
+  scissors: 'Spock smashes scissors'
+  rock: 'Spock vaporizes rock'
