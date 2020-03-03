@@ -84,6 +84,26 @@ def grand_winner_msg(player, computer)
   end
 end
 
+def collect_player_choice(player)
+  loop do
+    player[:choice] = convert_choice(gets.chomp.downcase)
+    if valid_choice?(player[:choice])
+      break
+    else
+      display_msg('invalid_choice', { valid_choices: valid_choices_string })
+    end
+  end
+end
+
+def grand_winner?(player, computer)
+  player[:score] == 5 || computer[:score] == 5
+end
+
+def reset_score(player, computer)
+  player[:score] = 0
+  computer[:score] = 0
+end
+
 display_msg('welcome')
 display_msg('objective')
 line_break
@@ -95,14 +115,7 @@ loop do
   line_break
   display_msg('choose', { valid_choices: valid_choices_string })
 
-  loop do
-    player[:choice] = convert_choice(gets.chomp.downcase)
-    if valid_choice?(player[:choice])
-      break
-    else
-      display_msg('invalid_choice', { valid_choices: valid_choices_string })
-    end
-  end
+  collect_player_choice(player)
 
   computer[:choice] = VALID_CHOICES.values.sample
   system 'clear'
@@ -118,7 +131,7 @@ loop do
   results_msg(winner, player[:choice], computer[:choice])
   line_break
 
-  if player[:score] == 5 || computer[:score] == 5
+  if grand_winner?(player, computer)
     display_msg(
       'final_score',
       player: player[:score],
@@ -126,11 +139,11 @@ loop do
     )
     grand_winner_msg(player, computer)
     line_break
+
     display_msg('play_again')
     play_again = gets.chomp.downcase.start_with?('y')
     if play_again
-      player[:score] = 0
-      computer[:score] = 0
+      reset_score(player, computer)
       system 'clear'
     else
       break
